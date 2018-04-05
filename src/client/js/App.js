@@ -11,6 +11,8 @@ import StudentNew from './routes/students/StudentNew';
 import StudentDetail from './routes/students/StudentDetail';
 import WeekDetail from './routes/weeks/WeekDetail';
 import request from 'superagent';
+import 'normalize.css';
+import './App.css';
 
 class App extends Component {
   constructor() {

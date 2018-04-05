@@ -2,7 +2,7 @@ import React from 'react';
 import glamorous from 'glamorous';
 
 const StudentListItemWrapper = glamorous.div({
-  backgroundColor: '#ccc',
+  backgroundColor: 'white',
   padding: 20,
   marginBottom: 20,
   borderRadius: 4,
@@ -31,13 +31,5 @@ class StudentListItem extends React.Component {
     );
   }
 }
-// const StudentListItem = ({ student }) => (
-//   <StudentListItemWrapper>
-//     <Avatar src={student.avatar} alt="alt" />
-//     <div>
-//       {student.name} {student.lastName}
-//     </div>
-//   </StudentListItemWrapper>
-// );
 
 export default StudentListItem;

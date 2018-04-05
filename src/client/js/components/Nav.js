@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import { NavLink } from 'react-router-dom';
 import req from 'superagent';
+import logo from '../logo.png';
 
 const Nav = glamorous.nav({
   backgroundColor: '#3A2192',
@@ -32,7 +33,7 @@ export default class Navbar extends Component {
     if (this.props.isAuthenticated) {
       return (
         <Nav>
-          <img src=" " alt="#" width={40} />
+          <img src={logo} alt="#" width={40} />
           <div
             style={{
               width: '20%',
@@ -47,7 +48,7 @@ export default class Navbar extends Component {
               style={{
                 with: '30',
                 border: 'none',
-                color: '#fff',
+                color: '#ccc',
                 borderRadius: 0
               }}
               onClick={this.logout}
