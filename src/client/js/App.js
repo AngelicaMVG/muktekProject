@@ -91,7 +91,16 @@ class App extends Component {
                     component={WeekDetail}
                   />
                   <Route path="/students/new" component={StudentNew} />
-                  <Route path="/students/:id" component={StudentDetail} />
+                  <Route
+                    path="/students/:id"
+                    render={props => (
+                      <StudentDetail
+                        {...props}
+                        isAuthenticated={this.state.isAuthenticated}
+                      />
+                    )}
+                  />
+
                   <Route
                     path="/students"
                     render={props => (

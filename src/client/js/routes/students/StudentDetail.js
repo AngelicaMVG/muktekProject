@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Div } from 'glamorous';
-// import { Box } from '../../shared';
+import { Redirect } from 'react-router-dom';
 import WeekList from '../weeks/WeekList';
 import req from 'superagent';
 import glamorous from 'glamorous';
@@ -36,13 +36,11 @@ class StudentDetail extends Component {
 
   render() {
     const { student } = this.state;
+    if (this.props.isAuthenticated === false) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
-        {/* <Section padding="20px 0">
-          <Box justifyContent="flex-end" marginBottom={40}>
-            <Button bgColor="#2C308D">Crear Estudiante</Button>
-          </Box>
-        </Section> */}
         <Div marginBottom={50}>
           <CardDetail>
             <img alt="student" src={student.avatar} width={70} height={70} />

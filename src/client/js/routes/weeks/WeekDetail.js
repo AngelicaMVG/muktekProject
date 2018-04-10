@@ -4,6 +4,7 @@ import glamorous from 'glamorous';
 import Button from '../../shared/button/Button';
 import Section from '../../shared/grid/Section';
 import MyLink from '../../shared/link/MyLink';
+import MdArrowBack from 'react-icons/lib/md/arrow-back';
 
 const WeekListWrapper = glamorous.div({
   backgroundColor: 'white',
@@ -53,7 +54,12 @@ export default class WeekDetail extends Component {
       <div>
         <MyLink to={`/students/${week.studentId}/weeks`}>
           <Button style={{ marginTop: '5%', backgroundColor: 'blue' }}>
-            Regresar
+            <MdArrowBack
+              style={{
+                color: 'white',
+                fontSize: '25px'
+              }}
+            />
           </Button>
         </MyLink>
         <WeekListWrapper key={week.id}>
@@ -78,6 +84,7 @@ export default class WeekDetail extends Component {
                     onChange={e => this.handleChange(day.id, e)}
                     name="homework"
                     defaultChecked={!!day.homework}
+                    ref="homework"
                   />
                 </div>
                 <div>

@@ -1,7 +1,10 @@
 const User = require('../../models/User.js');
 const { Model } = require('objection');
 
-let userDataRows = [{ email: 'admin@muktek.com', password: 'muktek' }];
+let userDataRows = [
+  { email: 'admin@muktek.com', password: 'muktek' },
+  { email: 'maribel@muktek.com', password: 'cimi1' }
+];
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries

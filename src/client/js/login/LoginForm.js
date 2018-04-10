@@ -57,23 +57,22 @@ class LoginForm extends Component {
     });
   };
 
-  // onSubmit = e => {
-  //   e.preventDefault();
-  //   req
-  //     .post('/auth/login')
-  //     .send({ email: this.state.email, password: this.state.password })
-  //     .then(res => {
-  //       localStorage.setItem('user', res.body.email);
-  //       console.log(res.body.email);
-  //       if (res.body.email) {
-  //         this.props.history.push('/students');
-  //       }
-  //     });
-  // };
-
   render() {
-    if (this.props.isAuthenticated === true) {
+    if (
+      this.props.isAuthenticated === true &&
+      this.state.email === 'admin@muktek.com' &&
+      this.state.password === 'muktek'
+    ) {
+      console.log('admin');
       return <Redirect to="/students" />;
+    }
+    if (
+      this.props.isAuthenticated === true &&
+      this.state.email === 'maribel@muktek.com' &&
+      this.state.password === 'cimi1'
+    ) {
+      console.log('maribel');
+      return <Redirect to="/students/1/myProfile" />;
     } else {
       return (
         <Card>

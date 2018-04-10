@@ -61,7 +61,7 @@ export default class Navbar extends Component {
     } else {
       return (
         <Nav>
-          <img src=" " alt="#" width={40} />
+          <img src={logo} alt="#" width={40} />
           <div
             style={{
               width: '20%',

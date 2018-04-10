@@ -90,6 +90,7 @@ function loggedIn(req, res, next) {
 studentsRouter
   .get('/', loggedIn, studentsIndex)
   .get('/:id/', singleStudent)
+
   .post('/new', createStudent)
   .put('/:id/edit', updateStudent)
   .delete('/:id', studentsDelete);
