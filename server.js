@@ -14,8 +14,6 @@ const authRouter = require('./src/routes/authRouter.js');
 const connectToDb = require('./src/database/dbConnect.js');
 const dbConfigObj = require('./knexfile');
 
-const app = express();
-
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
@@ -26,9 +24,19 @@ const {
   configSerializeUser
 } = require('./src/helpers/passport-local--sessionActions.js');
 
+const app = express();
+
 let dbConnectionConfig;
 
-const appDb = connectToDb(dbConfigObj.development);
+switch (process.env.NODE_ENV) {
+  case 'production':
+    dbConnectionConfig = dbConfigObj.production;
+    break;
+  default:
+    dbConnectionConfig = dbConfigObj.development;
+}
+
+const appDb = connectToDb(dbConnectionConfig);
 
 Model.knex(appDb);
 app.locals.db = appDb;
