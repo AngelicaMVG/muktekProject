@@ -42,13 +42,14 @@ class App extends Component {
   }
 
   handleAuthentication = credentials => {
-    // console.log(credentials);
+    console.log(credentials);
     request
       .post('/auth/login')
       // .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
         email: credentials.email,
-        password: credentials.password
+        password: credentials.password,
+        role: ['admin', 'guest']
       })
       .then(userLogged => {
         this.setState({

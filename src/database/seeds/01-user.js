@@ -2,8 +2,8 @@ const User = require('../../models/User.js');
 const { Model } = require('objection');
 
 let userDataRows = [
-  { email: 'admin@muktek.com', password: 'muktek' },
-  { email: 'maribel@muktek.com', password: 'cimi1' }
+  { email: 'admin@muktek.com', password: 'muktek', role: 'admin' },
+  { email: 'maribel@muktek.com', password: 'cimi1', role: 'guest' }
 ];
 
 exports.seed = function(knex, Promise) {

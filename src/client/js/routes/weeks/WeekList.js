@@ -17,6 +17,7 @@ const WeekListWrapper = glamorous.div({
 });
 
 export default ({ weeks }) => {
+  var count = 0;
   return (
     <div>
       {weeks &&
@@ -78,6 +79,7 @@ export default ({ weeks }) => {
                         />
                       )}
                     </div>
+                    {/* <div>{day.homework ? (count += 1) : false}</div> */}
                   </div>
                 ))}
             </WeekListWrapper>

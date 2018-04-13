@@ -40,14 +40,15 @@ const Title = glamorous.h1({
 });
 
 class LoginForm extends Component {
-  state = { email: '', password: '' };
+  state = { email: '', password: '', role: '' };
 
   handleSubmit = e => {
     e.preventDefault();
 
     this.props.handleAuthentication({
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      role: this.state.role
     });
   };
 
@@ -60,16 +61,14 @@ class LoginForm extends Component {
   render() {
     if (
       this.props.isAuthenticated === true &&
-      this.state.email === 'admin@muktek.com' &&
-      this.state.password === 'muktek'
+      this.state.email === 'admin@muktek.com'
     ) {
-      console.log('admin');
+      console.log(this.state.role);
       return <Redirect to="/students" />;
     }
     if (
       this.props.isAuthenticated === true &&
-      this.state.email === 'maribel@muktek.com' &&
-      this.state.password === 'cimi1'
+      this.state.email === 'maribel@muktek.com'
     ) {
       console.log('maribel');
       return <Redirect to="/students/1/myProfile" />;
@@ -94,6 +93,7 @@ class LoginForm extends Component {
               ref="password"
               value={this.state.password}
             />
+
             <Button style={{ backgroundColor: '#3A2192', marginLeft: '45%' }}>
               Login
             </Button>

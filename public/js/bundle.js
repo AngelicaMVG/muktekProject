@@ -6361,12 +6361,13 @@ var App = function (_Component) {
     };
 
     _this.handleAuthentication = function (credentials) {
-      // console.log(credentials);
+      console.log(credentials);
       __WEBPACK_IMPORTED_MODULE_12_superagent___default.a.post('/auth/login')
       // .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
         email: credentials.email,
-        password: credentials.password
+        password: credentials.password,
+        role: ['admin', 'guest']
       }).then(function (userLogged) {
         _this.setState({
           isAuthenticated: userLogged.body.id ? true : false
@@ -31183,12 +31184,13 @@ var LoginForm = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { email: '', password: '' }, _this.handleSubmit = function (e) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { email: '', password: '', role: '' }, _this.handleSubmit = function (e) {
       e.preventDefault();
 
       _this.props.handleAuthentication({
         email: _this.state.email,
-        password: _this.state.password
+        password: _this.state.password,
+        role: _this.state.role
       });
     }, _this.onChange = function (e) {
       var _this$setState;
@@ -31198,11 +31200,11 @@ var LoginForm = function (_Component) {
   }
 
   LoginForm.prototype.render = function render() {
-    if (this.props.isAuthenticated === true && this.state.email === 'admin@muktek.com' && this.state.password === 'muktek') {
-      console.log('admin');
+    if (this.props.isAuthenticated === true && this.state.email === 'admin@muktek.com') {
+      console.log(this.state.role);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Redirect */], { to: '/students' });
     }
-    if (this.props.isAuthenticated === true && this.state.email === 'maribel@muktek.com' && this.state.password === 'cimi1') {
+    if (this.props.isAuthenticated === true && this.state.email === 'maribel@muktek.com') {
       console.log('maribel');
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Redirect */], { to: '/students/1/myProfile' });
     } else {
@@ -34896,6 +34898,7 @@ var WeekListWrapper = __WEBPACK_IMPORTED_MODULE_1_glamorous__["b" /* default */]
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
   var weeks = _ref.weeks;
 
+  var count = 0;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
     null,
