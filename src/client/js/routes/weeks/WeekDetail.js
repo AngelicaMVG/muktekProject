@@ -45,7 +45,7 @@ export default class WeekDetail extends Component {
       .then(res => {
         console.log(res.body);
       });
-    console.log(id, e.target.name, e.target.checked);
+    // console.log(id, e.target.name, e.target.checked);
   };
 
   render() {

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import Navbar from './components/Nav';
 import Error from './shared/Error';
 import Grid from './shared/grid/Grid';
@@ -42,14 +47,13 @@ class App extends Component {
   }
 
   handleAuthentication = credentials => {
-    console.log(credentials);
+    // console.log(credentials);
     request
       .post('/auth/login')
-      // .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
         email: credentials.email,
-        password: credentials.password,
-        role: ['admin', 'guest']
+        password: credentials.password
       })
       .then(userLogged => {
         this.setState({

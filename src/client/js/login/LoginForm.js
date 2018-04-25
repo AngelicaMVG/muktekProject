@@ -47,8 +47,8 @@ class LoginForm extends Component {
 
     this.props.handleAuthentication({
       email: this.state.email,
-      password: this.state.password,
-      role: this.state.role
+      password: this.state.password
+      // role: this.state.role
     });
   };
 
@@ -63,7 +63,6 @@ class LoginForm extends Component {
       this.props.isAuthenticated === true &&
       this.state.email === 'admin@muktek.com'
     ) {
-      console.log(this.state.role);
       return <Redirect to="/students" />;
     }
     if (

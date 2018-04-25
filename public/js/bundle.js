@@ -6361,13 +6361,10 @@ var App = function (_Component) {
     };
 
     _this.handleAuthentication = function (credentials) {
-      console.log(credentials);
-      __WEBPACK_IMPORTED_MODULE_12_superagent___default.a.post('/auth/login')
-      // .set('Content-Type', 'application/x-www-form-urlencoded')
-      .send({
+      // console.log(credentials);
+      __WEBPACK_IMPORTED_MODULE_12_superagent___default.a.post('/auth/login').set('Content-Type', 'application/x-www-form-urlencoded').send({
         email: credentials.email,
-        password: credentials.password,
-        role: ['admin', 'guest']
+        password: credentials.password
       }).then(function (userLogged) {
         _this.setState({
           isAuthenticated: userLogged.body.id ? true : false
@@ -27340,6 +27337,7 @@ var Navbar = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_3_superagent___default.a.get('/auth/logout').then(function () {
         console.log('logout!!!');
         _this.props.updateNoAuthorization;
+        console.log(_this.props.isAuthenticated);
       });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -27349,7 +27347,11 @@ var Navbar = function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         Nav,
         null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_4__logo_png___default.a, alt: '#', width: 40 }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* NavLink */],
+          { to: '/students' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_4__logo_png___default.a, alt: '#', width: 40 })
+        ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           {
@@ -31189,8 +31191,8 @@ var LoginForm = function (_Component) {
 
       _this.props.handleAuthentication({
         email: _this.state.email,
-        password: _this.state.password,
-        role: _this.state.role
+        password: _this.state.password
+        // role: this.state.role
       });
     }, _this.onChange = function (e) {
       var _this$setState;
@@ -31201,7 +31203,6 @@ var LoginForm = function (_Component) {
 
   LoginForm.prototype.render = function render() {
     if (this.props.isAuthenticated === true && this.state.email === 'admin@muktek.com') {
-      console.log(this.state.role);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Redirect */], { to: '/students' });
     }
     if (this.props.isAuthenticated === true && this.state.email === 'maribel@muktek.com') {
@@ -34442,8 +34443,6 @@ var StudentList = function (_Component) {
   };
 
   StudentList.prototype.render = function render() {
-    var _this2 = this;
-
     if (this.props.isAuthenticated === false) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_router_dom__["d" /* Redirect */], { to: '/' });
     }
@@ -34458,21 +34457,7 @@ var StudentList = function (_Component) {
           null,
           'Estudiantes CIMI'
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3__shared_box_Box__["a" /* default */],
-          { justifyContent: 'flex-end' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_4__shared_button_Button__["a" /* default */],
-            {
-              style: { marginBottom: '5%' },
-              bgColor: '#2C308D',
-              onClick: function onClick() {
-                return _this2.props.history.push('/api/students/new');
-              }
-            },
-            'Crear Estudiante'
-          )
-        )
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__shared_box_Box__["a" /* default */], { justifyContent: 'flex-end' })
       ),
       this.state.students.length && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -34898,7 +34883,6 @@ var WeekListWrapper = __WEBPACK_IMPORTED_MODULE_1_glamorous__["b" /* default */]
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
   var weeks = _ref.weeks;
 
-  var count = 0;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
     null,
@@ -35123,7 +35107,7 @@ var WeekDetail = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.put('/api/students/' + params.studentId + '/weeks/' + params.id + '/days/' + id + '/edit').send((_req$put$send = {}, _req$put$send[e.target.name] = e.target.checked, _req$put$send)).then(function (res) {
         console.log(res.body);
       });
-      console.log(id, e.target.name, e.target.checked);
+      // console.log(id, e.target.name, e.target.checked);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 

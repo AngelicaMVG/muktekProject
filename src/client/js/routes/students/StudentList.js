@@ -34,13 +34,13 @@ export default class StudentList extends Component {
         <Section>
           <h2>Estudiantes CIMI</h2>
           <Box justifyContent="flex-end">
-            <Button
+            {/* <Button
               style={{ marginBottom: '5%' }}
               bgColor="#2C308D"
-              onClick={() => this.props.history.push('/api/students/new')}
+              // onClick={() => this.props.history.push('/api/students/new')}
             >
               Crear Estudiante
-            </Button>
+            </Button> */}
           </Box>
         </Section>
         {this.state.students.length && (

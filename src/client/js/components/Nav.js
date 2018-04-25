@@ -27,6 +27,7 @@ export default class Navbar extends Component {
     req.get('/auth/logout').then(() => {
       console.log('logout!!!');
       this.props.updateNoAuthorization;
+      console.log(this.props.isAuthenticated);
     });
   };
   render() {
@@ -34,6 +35,7 @@ export default class Navbar extends Component {
       return (
         <Nav>
           <img src={logo} alt="#" width={40} />
+
           <div
             style={{
               width: '20%',
