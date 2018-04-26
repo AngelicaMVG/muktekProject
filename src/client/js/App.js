@@ -16,6 +16,7 @@ import StudentNew from './routes/students/StudentNew';
 import StudentDetail from './routes/students/StudentDetail';
 import WeekDetail from './routes/weeks/WeekDetail';
 import request from 'superagent';
+import PrivateRoute from './hocs/PrivateRoute';
 import 'normalize.css';
 import './App.css';
 
@@ -47,7 +48,6 @@ class App extends Component {
   }
 
   handleAuthentication = credentials => {
-    // console.log(credentials);
     request
       .post('/auth/login')
       .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -56,6 +56,7 @@ class App extends Component {
         password: credentials.password
       })
       .then(userLogged => {
+        localStorage.setItem('email', credentials.email);
         this.setState({
           isAuthenticated: userLogged.body.id ? true : false
         });
@@ -80,40 +81,18 @@ class App extends Component {
               </Area>
               <Area area="content">
                 <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={props => (
-                      <LoginForm
-                        {...props}
-                        isAuthenticated={this.state.isAuthenticated}
-                        handleAuthentication={this.handleAuthentication}
-                      />
-                    )}
-                  />
+                  <Route exact path="/" component={LoginForm} />
                   <Route
                     path="/students/:studentId/weeks/:id"
                     component={WeekDetail}
                   />
                   <Route path="/students/new" component={StudentNew} />
-                  <Route
+                  <PrivateRoute
                     path="/students/:id"
-                    render={props => (
-                      <StudentDetail
-                        {...props}
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
+                    component={StudentDetail}
                   />
 
-                  <Route
-                    path="/students"
-                    render={props => (
-                      <StudentList
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
-                  />
+                  <PrivateRoute path="/students" component={StudentList} />
                 </Switch>
               </Area>
             </Grid>

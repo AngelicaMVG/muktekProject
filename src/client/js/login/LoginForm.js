@@ -45,11 +45,17 @@ class LoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.handleAuthentication({
-      email: this.state.email,
-      password: this.state.password
-      // role: this.state.role
-    });
+    request
+      .post('/auth/login')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .send({ email: this.state.email, password: this.state.password })
+      .then(userLogged => {
+        localStorage.setItem('email', this.state.email);
+        this.setState({
+          isAuthenticated: userLogged.body.id ? true : false
+        });
+        this.props.history.push('/students');
+      });
   };
 
   onChange = e => {
@@ -59,47 +65,33 @@ class LoginForm extends Component {
   };
 
   render() {
-    if (
-      this.props.isAuthenticated === true &&
-      this.state.email === 'admin@muktek.com'
-    ) {
-      return <Redirect to="/students" />;
-    }
-    if (
-      this.props.isAuthenticated === true &&
-      this.state.email === 'maribel@muktek.com'
-    ) {
-      console.log('maribel');
-      return <Redirect to="/students/1/myProfile" />;
-    } else {
-      return (
-        <Card>
-          <Title>Bienvenido a Muktek Academy</Title>
-          <form onSubmit={this.handleSubmit}>
-            <FieldWrapper
-              type="email"
-              placeholder="email"
-              onChange={this.onChange}
-              name="email"
-              ref="email"
-              value={this.state.email}
-            />
-            <FieldWrapper
-              placeholder="Password"
-              type="password"
-              onChange={this.onChange}
-              name="password"
-              ref="password"
-              value={this.state.password}
-            />
+    return (
+      <Card>
+        <Title>Bienvenido a Muktek Academy</Title>
+        <form onSubmit={this.handleSubmit}>
+          <FieldWrapper
+            type="email"
+            placeholder="email"
+            onChange={this.onChange}
+            name="email"
+            ref="email"
+            value={this.state.email}
+          />
+          <FieldWrapper
+            placeholder="Password"
+            type="password"
+            onChange={this.onChange}
+            name="password"
+            ref="password"
+            value={this.state.password}
+          />
 
-            <Button style={{ backgroundColor: '#3A2192', marginLeft: '45%' }}>
-              Login
-            </Button>
-          </form>
-        </Card>
-      );
-    }
+          <Button style={{ backgroundColor: '#3A2192', marginLeft: '45%' }}>
+            Login
+          </Button>
+        </form>
+      </Card>
+    );
   }
 }
 

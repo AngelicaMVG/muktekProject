@@ -23,22 +23,58 @@ const CardDetail = glamorous.div(
 
 class StudentDetail extends Component {
   state = {
-    student: {}
+    student: {},
+    weeks: [],
+    homework: [],
+    attendance: []
   };
 
   componentDidMount() {
     req.get(`/api/students/${this.props.match.params.id}`).then(res => {
       this.setState({
-        student: res.body
+        student: res.body,
+        weeks: res.body.weeks,
+        homework: res.body.weeks.map(week =>
+          week.days.map(day => day.homework)
+        ),
+        attendance: res.body.weeks.map(week =>
+          week.days.map(day => day.attendance)
+        )
       });
     });
   }
 
-  render() {
-    const { student } = this.state;
-    if (this.props.isAuthenticated === false) {
-      return <Redirect to="/" />;
+  getHomeworkPercentage = () => {
+    if (this.state.homework.length) {
+      return (
+        (
+          this.state.homework
+            .reduce((a, b) => a.concat(b))
+            .reduce((a, b) => a + b) *
+          100 /
+          75
+        ).toFixed(2) + '%'
+      );
     }
+  };
+
+  getAttendancePercentage = () => {
+    if (this.state.attendance.length) {
+      return (
+        (
+          this.state.attendance
+            .reduce((a, b) => a.concat(b))
+            .reduce((a, b) => a + b) *
+          100 /
+          75
+        ).toFixed(2) + '%'
+      );
+    }
+  };
+
+  render() {
+    console.log(this.state.homework);
+    const { student } = this.state;
     return (
       <div>
         <Div marginBottom={50}>
@@ -47,6 +83,8 @@ class StudentDetail extends Component {
             <h2>
               {student.name} {student.lastName}
             </h2>
+            <h3>{this.getHomeworkPercentage()}</h3> <span>homework</span>
+            <h3>{this.getAttendancePercentage()}</h3> <span>attendance</span>
           </CardDetail>
         </Div>
 

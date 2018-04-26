@@ -14,67 +14,46 @@ const Nav = glamorous.nav({
   color: 'white'
 });
 
-const routesAuthenticated = [
-  <NavLink to="/students" style={{ color: 'white', textDecoration: 'none' }}>
-    Students
-  </NavLink>
-];
-
-const routes = [<NavLink to={'/'}>Login</NavLink>];
-
 export default class Navbar extends Component {
+  getRoute = () => {
+    if (localStorage.getItem('email')) {
+      return [
+        <NavLink
+          key="1"
+          to="/students"
+          style={{ color: 'white', textDecoration: 'none' }}
+        >
+          Students
+        </NavLink>,
+        <a href="/" key="2" onClick={this.logout}>
+          Logout
+        </a>
+      ];
+    }
+  };
   logout = () => {
     req.get('/auth/logout').then(() => {
       console.log('logout!!!');
       this.props.updateNoAuthorization;
       console.log(this.props.isAuthenticated);
+      localStorage.removeItem('email');
     });
   };
   render() {
-    if (this.props.isAuthenticated) {
-      return (
-        <Nav>
-          <img src={logo} alt="#" width={40} />
+    return (
+      <Nav>
+        <img src={logo} alt="#" width={40} />
 
-          <div
-            style={{
-              width: '20%',
-              display: 'flex',
-              justifyContent: 'space-around'
-            }}
-          >
-            <div>{routesAuthenticated}</div>
-
-            <button
-              className="nav__link"
-              style={{
-                with: '30',
-                border: 'none',
-                color: '#ccc',
-                borderRadius: 0
-              }}
-              onClick={this.logout}
-            >
-              Logout
-            </button>
-          </div>
-        </Nav>
-      );
-    } else {
-      return (
-        <Nav>
-          <img src={logo} alt="#" width={40} />
-          <div
-            style={{
-              width: '20%',
-              display: 'flex',
-              justifyContent: 'space-around'
-            }}
-          >
-            <div>{routes}</div>
-          </div>
-        </Nav>
-      );
-    }
+        <div
+          style={{
+            width: '20%',
+            display: 'flex',
+            justifyContent: 'space-around'
+          }}
+        >
+          <div>{this.getRoute()}</div>
+        </div>
+      </Nav>
+    );
   }
 }

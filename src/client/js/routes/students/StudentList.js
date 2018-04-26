@@ -6,7 +6,6 @@ import Box from '../../shared/box/Box';
 import Button from '../../shared/button/Button';
 import MyLink from '../../shared/link/MyLink';
 import StudentListItem from './StudentListItem';
-import { Redirect } from 'react-router-dom';
 
 export default class StudentList extends Component {
   state = {
@@ -26,21 +25,18 @@ export default class StudentList extends Component {
   };
 
   render() {
-    if (this.props.isAuthenticated === false) {
-      return <Redirect to="/" />;
-    }
     return (
       <div>
         <Section>
           <h2>Estudiantes CIMI</h2>
           <Box justifyContent="flex-end">
-            {/* <Button
+            <Button
               style={{ marginBottom: '5%' }}
               bgColor="#2C308D"
               // onClick={() => this.props.history.push('/api/students/new')}
             >
               Crear Estudiante
-            </Button> */}
+            </Button>
           </Box>
         </Section>
         {this.state.students.length && (
