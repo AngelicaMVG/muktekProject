@@ -5,13 +5,14 @@ import req from 'superagent';
 import logo from '../logo.png';
 
 const Nav = glamorous.nav({
-  backgroundColor: '#3A2192',
+  backgroundColor: '#564A9B',
   height: 80,
   padding: '5px 20px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  color: 'white'
+  color: 'white',
+  zIndex: 50
 });
 
 export default class Navbar extends Component {
@@ -25,7 +26,16 @@ export default class Navbar extends Component {
         >
           Students
         </NavLink>,
-        <a href="/" key="2" onClick={this.logout}>
+        <a
+          style={{
+            textDecoration: 'none',
+            color: '#fff',
+            marginLeft: '25%'
+          }}
+          href="/"
+          key="2"
+          onClick={this.logout}
+        >
           Logout
         </a>
       ];
@@ -46,9 +56,9 @@ export default class Navbar extends Component {
 
         <div
           style={{
-            width: '20%',
+            width: '15%',
             display: 'flex',
-            justifyContent: 'space-around'
+            justifyContent: 'space-between'
           }}
         >
           <div>{this.getRoute()}</div>

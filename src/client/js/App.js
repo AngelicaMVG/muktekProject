@@ -70,6 +70,7 @@ class App extends Component {
           <Router>
             <Grid
               height="100%"
+              width="100%"
               gap="20px"
               template={`" top top top top" 50px ".  content content ." auto`}
             >
@@ -79,7 +80,8 @@ class App extends Component {
                   updateNoAuthorization={this.updateNoAuthorization}
                 />
               </Area>
-              <Area area="content">
+
+              <Area area=" content">
                 <Switch>
                   <Route exact path="/" component={LoginForm} />
                   <Route

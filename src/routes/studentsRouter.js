@@ -81,11 +81,14 @@ function loggedIn(req, res, next) {
   if (req.user) {
     next();
   } else {
-    // console.log('No Authorization');
-    status: 'protected route';
-    // res.redirect('/');
+    console.log('No Authorization');
+    res.json({
+      error: 'private route'
+    });
   }
 }
+
+// proteger rutas desde servidor
 
 studentsRouter
   .get('/', loggedIn, studentsIndex)

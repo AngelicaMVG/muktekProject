@@ -6402,6 +6402,7 @@ var App = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_5__shared_grid_Grid__["a" /* default */],
             {
               height: '100%',
+              width: '100%',
               gap: '20px',
               template: '" top top top top" 50px ".  content content ." auto'
             },
@@ -6415,7 +6416,7 @@ var App = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_6__shared_grid_Area__["a" /* default */],
-              { area: 'content' },
+              { area: ' content' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["f" /* Switch */],
                 null,
@@ -27278,13 +27279,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Nav = __WEBPACK_IMPORTED_MODULE_1_glamorous__["b" /* default */].nav({
-  backgroundColor: '#3A2192',
+  backgroundColor: '#564A9B',
   height: 80,
   padding: '5px 20px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  color: 'white'
+  color: 'white',
+  zIndex: 50
 });
 
 var Navbar = function (_Component) {
@@ -27311,7 +27313,16 @@ var Navbar = function (_Component) {
           'Students'
         ), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'a',
-          { href: '/', key: '2', onClick: _this.logout },
+          {
+            style: {
+              textDecoration: 'none',
+              color: '#fff',
+              marginLeft: '25%'
+            },
+            href: '/',
+            key: '2',
+            onClick: _this.logout
+          },
           'Logout'
         )];
       }
@@ -27334,9 +27345,9 @@ var Navbar = function (_Component) {
         'div',
         {
           style: {
-            width: '20%',
+            width: '15%',
             display: 'flex',
-            justifyContent: 'space-around'
+            justifyContent: 'space-between'
           }
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -31069,6 +31080,7 @@ Area.defaultProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_button_Button__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_glamorous__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_grid_Area__ = __webpack_require__(120);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -31082,16 +31094,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var FieldWrapper = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].input({
   boxSizing: 'border-box',
-  width: '60%',
+  width: '80%',
   display: 'block',
   height: 40,
   outline: 'none',
   border: '1px solid gray',
   borderRadius: 4,
-  marginBottom: 20,
-  marginLeft: '20%',
+  margin: '20px auto',
   padding: '10px',
   ':focus': {
     border: '1px solid black',
@@ -31100,9 +31112,10 @@ var FieldWrapper = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].in
 });
 
 var Card = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].div({
-  margin: '10% auto',
+  width: '50%',
+  marginTop: '15%',
   borderRadius: 4,
-  padding: 50
+  padding: '30px 50px  50px 50px'
 }, function (_ref) {
   var color = _ref.color;
   return {
@@ -31110,10 +31123,10 @@ var Card = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].div({
   };
 });
 
-var Title = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].h1({
-  fontFamily: 'Lato',
+var Title = __WEBPACK_IMPORTED_MODULE_4_glamorous__["b" /* default */].h2({
   textAlign: 'center',
-  paddingBottom: 20
+  paddingBottom: 20,
+  fontFamily: 'Libre Franklin,Helvetica Neue,Helvetica,Calibri,sans-serif'
 });
 
 var LoginForm = function (_Component) {
@@ -31147,36 +31160,71 @@ var LoginForm = function (_Component) {
 
   LoginForm.prototype.render = function render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      Card,
-      null,
+      'div',
+      {
+        style: {
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          width: '100%'
+        }
+      },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        Title,
-        null,
-        'Bienvenido a Muktek Academy'
+        __WEBPACK_IMPORTED_MODULE_5__shared_grid_Area__["a" /* default */],
+        {
+          area: 'content',
+          style: { height: 300, width: '40%', textAlign: 'center' }
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h1',
+          null,
+          'Bienvenido a ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+          'MUKTEK Academy'
+        )
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'form',
-        { onSubmit: this.handleSubmit },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldWrapper, {
-          type: 'email',
-          placeholder: 'email',
-          onChange: this.onChange,
-          name: 'email',
-          ref: 'email',
-          value: this.state.email
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldWrapper, {
-          placeholder: 'Password',
-          type: 'password',
-          onChange: this.onChange,
-          name: 'password',
-          ref: 'password',
-          value: this.state.password
-        }),
+        Card,
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3__shared_button_Button__["a" /* default */],
-          { style: { backgroundColor: '#3A2192', marginLeft: '45%' } },
-          'Login'
+          Title,
+          null,
+          'Inicia Sesion'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldWrapper, {
+            type: 'email',
+            placeholder: 'email',
+            onChange: this.onChange,
+            name: 'email',
+            ref: 'email',
+            value: this.state.email
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldWrapper, {
+            placeholder: 'Password',
+            type: 'password',
+            onChange: this.onChange,
+            name: 'password',
+            ref: 'password',
+            value: this.state.password
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_3__shared_button_Button__["a" /* default */],
+            {
+              style: {
+                backgroundColor: '#564A9B',
+                fontFamily: 'Libre Franklin, Helvetica Nue',
+                width: '80%',
+                marginLeft: '10%',
+                fontSize: 18
+              }
+            },
+            'Login'
+          )
         )
       )
     );
@@ -34379,27 +34427,14 @@ var StudentList = function (_Component) {
   StudentList.prototype.render = function render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      null,
+      { style: { fontFamily: 'Libre Franklin' } },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1__shared_grid_Section__["a" /* default */],
-        null,
+        { style: { margin: '10%' } },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
           'Estudiantes CIMI'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3__shared_box_Box__["a" /* default */],
-          { justifyContent: 'flex-end' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_4__shared_button_Button__["a" /* default */],
-            {
-              style: { marginBottom: '5%' },
-              bgColor: '#2C308D'
-              // onClick={() => this.props.history.push('/api/students/new')}
-            },
-            'Crear Estudiante'
-          )
         )
       ),
       this.state.students.length && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -34487,7 +34522,7 @@ Box.defaultProps = {
   alignItems: '',
   alignContent: ''
 };
-/* harmony default export */ __webpack_exports__["a"] = (Box);
+/* unused harmony default export */ var _unused_webpack_default_export = (Box);
 
 /***/ }),
 /* 125 */
@@ -34810,26 +34845,34 @@ var StudentDetail = function (_Component) {
             student.lastName
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h3',
+            'div',
             null,
-            this.getHomeworkPercentage()
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              null,
+              this.getHomeworkPercentage()
+            ),
+            ' ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              null,
+              'Tareas'
+            )
           ),
-          ' ',
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
+            'div',
             null,
-            'homework'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h3',
-            null,
-            this.getAttendancePercentage()
-          ),
-          ' ',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            null,
-            'attendance'
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h3',
+              null,
+              this.getAttendancePercentage()
+            ),
+            ' ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              null,
+              'Asistencias'
+            )
           )
         )
       ),
@@ -35460,10 +35503,10 @@ if(false) {
 
 exports = module.exports = __webpack_require__(47)(undefined);
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Libre+Franklin);", ""]);
 
 // module
-exports.push([module.i, "* {\n  box-sizing: border-box;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\nhtml,\nbody,\n#root {\n  height: 100%;\n  background: #e8ebee;\n}\n", ""]);
+exports.push([module.i, "* {\n  box-sizing: border-box;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\nhtml,\nbody,\n#root {\n  height: 100%;\n  background: #e8ebee;\n  font-family: 'Libre Franklin','Helvetica Neue',Helvetica,'Calibri',sans-serif;\n}\n", ""]);
 
 // exports
 

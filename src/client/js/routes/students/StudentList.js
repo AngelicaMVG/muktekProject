@@ -26,10 +26,10 @@ export default class StudentList extends Component {
 
   render() {
     return (
-      <div>
-        <Section>
+      <div style={{ fontFamily: 'Libre Franklin' }}>
+        <Section style={{ margin: '10%' }}>
           <h2>Estudiantes CIMI</h2>
-          <Box justifyContent="flex-end">
+          {/* <Box justifyContent="flex-end">
             <Button
               style={{ marginBottom: '5%' }}
               bgColor="#2C308D"
@@ -37,7 +37,7 @@ export default class StudentList extends Component {
             >
               Crear Estudiante
             </Button>
-          </Box>
+          </Box> */}
         </Section>
         {this.state.students.length && (
           <div>

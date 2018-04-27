@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -9,4 +10,5 @@ body,
 #root {
   height: 100%;
   background: #e8ebee;
+  font-family: 'Libre Franklin','Helvetica Neue',Helvetica,'Calibri',sans-serif;
 }

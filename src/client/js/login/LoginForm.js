@@ -4,17 +4,17 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Button from '../shared/button/Button';
 import glamorous from 'glamorous';
 import request from 'superagent';
+import Area from '../shared/grid/Area';
 
 const FieldWrapper = glamorous.input({
   boxSizing: 'border-box',
-  width: '60%',
+  width: '80%',
   display: 'block',
   height: 40,
   outline: 'none',
   border: `1px solid gray`,
   borderRadius: 4,
-  marginBottom: 20,
-  marginLeft: '20%',
+  margin: '20px auto',
   padding: '10px',
   ':focus': {
     border: `1px solid black`,
@@ -24,19 +24,20 @@ const FieldWrapper = glamorous.input({
 
 const Card = glamorous.div(
   {
-    margin: '10% auto',
+    width: '50%',
+    marginTop: '15%',
     borderRadius: 4,
-    padding: 50
+    padding: '30px 50px  50px 50px'
   },
   ({ color }) => ({
     backgroundColor: 'white'
   })
 );
 
-const Title = glamorous.h1({
-  fontFamily: 'Lato',
+const Title = glamorous.h2({
   textAlign: 'center',
-  paddingBottom: 20
+  paddingBottom: 20,
+  fontFamily: 'Libre Franklin,Helvetica Neue,Helvetica,Calibri,sans-serif'
 });
 
 class LoginForm extends Component {
@@ -66,31 +67,56 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
-        <Title>Bienvenido a Muktek Academy</Title>
-        <form onSubmit={this.handleSubmit}>
-          <FieldWrapper
-            type="email"
-            placeholder="email"
-            onChange={this.onChange}
-            name="email"
-            ref="email"
-            value={this.state.email}
-          />
-          <FieldWrapper
-            placeholder="Password"
-            type="password"
-            onChange={this.onChange}
-            name="password"
-            ref="password"
-            value={this.state.password}
-          />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          width: '100%'
+        }}
+      >
+        <Area
+          area="content"
+          style={{ height: 300, width: '40%', textAlign: 'center' }}
+        >
+          <h1>
+            Bienvenido a <br /> <br />MUKTEK Academy
+          </h1>
+        </Area>
+        <Card>
+          <Title>Inicia Sesion</Title>
+          <form onSubmit={this.handleSubmit}>
+            <FieldWrapper
+              type="email"
+              placeholder="email"
+              onChange={this.onChange}
+              name="email"
+              ref="email"
+              value={this.state.email}
+            />
+            <FieldWrapper
+              placeholder="Password"
+              type="password"
+              onChange={this.onChange}
+              name="password"
+              ref="password"
+              value={this.state.password}
+            />
 
-          <Button style={{ backgroundColor: '#3A2192', marginLeft: '45%' }}>
-            Login
-          </Button>
-        </form>
-      </Card>
+            <Button
+              style={{
+                backgroundColor: '#564A9B',
+                fontFamily: 'Libre Franklin, Helvetica Nue',
+                width: '80%',
+                marginLeft: '10%',
+                fontSize: 18
+              }}
+            >
+              Login
+            </Button>
+          </form>
+        </Card>
+      </div>
     );
   }
 }

@@ -83,8 +83,12 @@ class StudentDetail extends Component {
             <h2>
               {student.name} {student.lastName}
             </h2>
-            <h3>{this.getHomeworkPercentage()}</h3> <span>homework</span>
-            <h3>{this.getAttendancePercentage()}</h3> <span>attendance</span>
+            <div>
+              <h3>{this.getHomeworkPercentage()}</h3> <span>Tareas</span>
+            </div>
+            <div>
+              <h3>{this.getAttendancePercentage()}</h3> <span>Asistencias</span>
+            </div>
           </CardDetail>
         </Div>
 
